@@ -1,14 +1,21 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Alert } from "react-native";
 import images from "@/constants/images";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native";
 import icons from "@/constants/icons";
+import { login } from "@/lib/appwrite";
 
 const SignIn = () => {
-  const handleLogin = () => {
-    console.log("Login with Google");
+  const handleLogin = async () => {
+    const result = await login();
+
+    if (result) {
+      console.log("Login Success");
+    } else {
+      Alert.alert("Error", "Failed to login");
+    }
   };
 
   return (

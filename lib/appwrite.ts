@@ -67,6 +67,7 @@ export async function getAccount() {
 
     if (!response.$id) {
       const userAvatar = avatar.getInitials(response.name);
+      return { ...response, avatar: userAvatar.toString() };
     }
   } catch (error) {
     console.error(error);
