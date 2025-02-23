@@ -6,8 +6,14 @@ import { ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native";
 import icons from "@/constants/icons";
 import { login } from "@/lib/appwrite";
+import { useGlobalContext } from "@/lib/global-provider";
+import { Redirect } from "expo-router";
 
 const SignIn = () => {
+  const { refetch, loading, isLogged } = useGlobalContext();
+
+  if (!loading && isLogged) return <Redirect href="/" />;
+
   const handleLogin = async () => {
     const result = await login();
 
